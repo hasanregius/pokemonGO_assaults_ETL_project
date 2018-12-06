@@ -1,42 +1,42 @@
-DROP DATABASE pokemon_police_db;
+# MYSQL COMPONENT OF ETL PROJECT
 
-CREATE DATABASE pokemon_police_db;
+# 1. CREATED pokemon_police_db
 USE pokemon_police_db;
 
+# 2. DROP EXISTING TABLES
+DROP TABLE pokemon;
+DROP TABLE police;
+
+# 3. CREATE POKEMON TABLE
 CREATE TABLE pokemon (
-  s2_id BIGINT PRIMARY KEY,
-  s2_token INT,
-  num INT,
+  id INT PRIMARY KEY,
   name TEXT,
-  lat DOUBLE(8,6),
-  lng DOUBLE(8,6),
-  encounter_ms BIGINT,
-  disppear_ms BIGINT
+  lat DOUBLE(8,5),
+  lng DOUBLE(8,5)
 );
 
+# 4. CREATE POLICE TABLE
 CREATE TABLE police (
-  inc_num BIGINT PRIMARY KEY,
-  category TEXT,
-  license_count INT,
+  inc_num BIGINT(19) PRIMARY KEY,
   descr TEXT,
-  day_of_week TEXT,
-  dt DATE,
-  tm TIME,
   district TEXT,
   resolution TEXT,
-  address TEXT,
-  lng TEXT,
-  lat TEXT,
-  location TEXT,
-  pdID BIGINT
-);
+  lng DOUBLE(8,5),
+  lat DOUBLE(8,5)
+  );
 
+# 5. VALIDATE RESULTS
 SELECT * FROM pokemon;
 SELECT * FROM police;
 
+# 6. SUM RESULTS PER SF DISTRICT
 SELECT
-	p.id,
-    p.premise_name,
-    c.county_name
-FROM premise p, county c
-WHERE p.county_id=c.county_id;
+	COUNT(pk.id) AS id_count,
+    pk.name,
+    po.descr,
+    po.resolution,
+    po.district
+FROM pokemon pk, police po
+WHERE pk.lat LIKE '37.7%'
+AND pk.lng LIKE '-122.3%'
+GROUP BY po.district, po.descr;
