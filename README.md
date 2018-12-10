@@ -10,3 +10,5 @@ We are working with the Pokemon GO spawn rate dataset along with the police inci
   <img src="/Resources/Images/gologo.jpeg" width="400" title="Pokemon GO Logo">
   <img src="/Resources/Images/sharkeisha.jpg" width="400" title="sharkeisha">  
 </p>
+
+reflection [link](https://docs.google.com/document/d/19bl0wKYKCQwZ6kDMhwARaNSXp3bc0xEt796x4M-Ovtc)
